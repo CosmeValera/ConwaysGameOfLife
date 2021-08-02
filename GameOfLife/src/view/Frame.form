@@ -601,27 +601,29 @@
                   <Component id="ButCell40" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ButCell42" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell43" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell44" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell45" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell46" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell47" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell48" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell49" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell50" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell51" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell52" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell53" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell54" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell55" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell56" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell57" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell58" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell59" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButCell60" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ButCell41" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="ButCell42" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell43" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell44" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell45" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell46" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell47" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell48" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell49" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell50" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell51" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell52" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell53" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell54" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell55" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell56" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell57" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell58" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell59" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButCell60" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -851,6 +853,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="START"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butStarttActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labTimer">
       <Properties>
