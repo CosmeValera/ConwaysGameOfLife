@@ -13,7 +13,7 @@ public class Cell {
 
     public Cell() {
         state = ESTADO.DEAD;
-        List<Cell> neighbourCells = new ArrayList<>();
+        neighbourCells = new ArrayList<>();
     }
 
     public ESTADO getState() {

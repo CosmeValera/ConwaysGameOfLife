@@ -1791,17 +1791,80 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_ButCell1ActionPerformed
 
     private void butStarttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butStarttActionPerformed
-
         Cell cell22 = new Cell();
+        int aliveNeighbourCells = 0;
 
+        Cell cell2 = new Cell();
+        Cell cell21 = new Cell();
+        Cell cell23 = new Cell();
+        Cell cell42 = new Cell();
+
+        if (ButCell2.isSelected()) {
+            cell2.setState(Cell.ESTADO.ALIVE);
+        } else {
+            cell2.setState(Cell.ESTADO.DEAD);
+        }
+        cell22.getNeighbourCells().add(cell2.getState());
+
+        if (ButCell21.isSelected()) {
+            cell21.setState(Cell.ESTADO.ALIVE);
+        } else {
+            cell21.setState(Cell.ESTADO.DEAD);
+        }
+        cell22.getNeighbourCells().add(cell21.getState());
+
+        if (ButCell23.isSelected()) {
+            cell23.setState(Cell.ESTADO.ALIVE);
+        } else {
+            cell23.setState(Cell.ESTADO.DEAD);
+        }
+        cell22.getNeighbourCells().add(cell23.getState());
+
+        if (ButCell42.isSelected()) {
+            cell42.setState(Cell.ESTADO.ALIVE);
+        } else {
+            cell42.setState(Cell.ESTADO.DEAD);
+        }
+        cell22.getNeighbourCells().add(cell42.getState());
+
+        for (Cell.ESTADO cellState : cell22.getNeighbourCells()) {
+            if (cellState.equals(Cell.ESTADO.ALIVE)) {
+                aliveNeighbourCells++;
+            }
+        }
+        System.out.println("In the surroundings there are " + aliveNeighbourCells + " alive neighbour cells.");
+
+        checkIfCellIsAliveOrDead(cell22);
+
+        if (cell22.getState() == Cell.ESTADO.ALIVE) { //ALIVE
+            if (aliveNeighbourCells != 2 && aliveNeighbourCells != 3) {
+                cell22.setState(Cell.ESTADO.DEAD);
+                System.out.println("0,1 or 4 alive neighbour cells means this cell dies");
+            }
+        } else { //DEAD
+            if (aliveNeighbourCells == 3) {
+                cell22.setState(Cell.ESTADO.ALIVE);
+                System.out.println("3 alive neighbour cells means this cell revives");
+            }
+        }
+        connectButtonWithItsCellState(cell22);
+    }//GEN-LAST:event_butStarttActionPerformed
+
+    private void checkIfCellIsAliveOrDead(Cell cell22) {
         if (ButCell22.isSelected()) {
             cell22.setState(Cell.ESTADO.ALIVE);
-        } else {
-            cell22.setState(Cell.ESTADO.DEAD);
+            return;
         }
-        System.out.println("cell 22 is " + cell22.getState());
+        cell22.setState(Cell.ESTADO.DEAD);
+    }
 
-    }//GEN-LAST:event_butStarttActionPerformed
+    private void connectButtonWithItsCellState(Cell cell22) {
+        if (cell22.getState().equals(Cell.ESTADO.ALIVE)) {
+            ButCell22.setSelected(true);
+            return;
+        }
+        ButCell22.setSelected(false);
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
