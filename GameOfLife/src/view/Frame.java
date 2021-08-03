@@ -1791,79 +1791,131 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_ButCell1ActionPerformed
 
     private void butStarttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butStarttActionPerformed
-        Cell cell22 = new Cell();
-        int aliveNeighbourCells = 0;
+        //Cell 22
+        Cell instanceCell = new Cell(22);
 
-        Cell cell2 = new Cell();
-        Cell cell21 = new Cell();
-        Cell cell23 = new Cell();
-        Cell cell42 = new Cell();
+        checkSurroundingCells(instanceCell);
 
-        if (ButCell2.isSelected()) {
-            cell2.setState(Cell.ESTADO.ALIVE);
-        } else {
-            cell2.setState(Cell.ESTADO.DEAD);
+        System.out.println("In the surrounding cells, " + instanceCell.getAliveNeighbourCells() + " cells are alive.");
+        checkIfCellIsAliveOrDead(instanceCell);
+
+        killOrReviveCell(instanceCell, instanceCell.getAliveNeighbourCells());
+
+        cellWillChangeState(instanceCell);
+
+        //Cell 42
+        Cell otherInstanceCell = new Cell(42);
+
+        checkSurroundingCells(otherInstanceCell);
+
+        System.out.println("In the surrounding cells, " + otherInstanceCell.getAliveNeighbourCells() + " cells are alive. 2");
+        checkIfCellIsAliveOrDead(otherInstanceCell);
+
+        killOrReviveCell(otherInstanceCell, otherInstanceCell.getAliveNeighbourCells());
+
+        cellWillChangeState(otherInstanceCell);
+
+        matchButtonWithItsCellState(instanceCell, otherInstanceCell);
+    }//GEN-LAST:event_butStarttActionPerformed
+
+    private void checkSurroundingCells(Cell instanceCell) {
+        checkStateOfUpperCell(instanceCell);
+        checkStateOfLeftCell(instanceCell);
+        checkStateOfRightCell(instanceCell);
+        checkStateOfLowerCell(instanceCell);
+    }
+
+    private void checkStateOfUpperCell(Cell instanceCell) {
+        Cell upperCell = new Cell(instanceCell.getPosition() - 20);
+
+        if (upperCell.getPosition() > 0) {
+            checkAndIncreaseAliveNeighbours(upperCell, instanceCell);
         }
-        cell22.getNeighbourCells().add(cell2.getState());
+    }
 
-        if (ButCell21.isSelected()) {
-            cell21.setState(Cell.ESTADO.ALIVE);
-        } else {
-            cell21.setState(Cell.ESTADO.DEAD);
+    private void checkStateOfLeftCell(Cell instanceCell) {
+        Cell leftCell = new Cell(instanceCell.getPosition() - 1);
+
+        if (leftCell.getPosition() % 20 != 0) {
+            checkAndIncreaseAliveNeighbours(leftCell, instanceCell);
         }
-        cell22.getNeighbourCells().add(cell21.getState());
+    }
 
-        if (ButCell23.isSelected()) {
-            cell23.setState(Cell.ESTADO.ALIVE);
-        } else {
-            cell23.setState(Cell.ESTADO.DEAD);
+    private void checkStateOfRightCell(Cell instanceCell) {
+        Cell rightCell = new Cell(instanceCell.getPosition() + 1);
+
+        if ((rightCell.getPosition() - 1) % 20 != 0) {
+            checkAndIncreaseAliveNeighbours(rightCell, instanceCell);
         }
-        cell22.getNeighbourCells().add(cell23.getState());
+    }
 
-        if (ButCell42.isSelected()) {
-            cell42.setState(Cell.ESTADO.ALIVE);
-        } else {
-            cell42.setState(Cell.ESTADO.DEAD);
+    private void checkStateOfLowerCell(Cell instanceCell) {
+        Cell lowerCell = new Cell(instanceCell.getPosition() + 20);
+
+        if (lowerCell.getPosition() <= 220) {
+            checkAndIncreaseAliveNeighbours(lowerCell, instanceCell);
         }
-        cell22.getNeighbourCells().add(cell42.getState());
+    }
 
-        for (Cell.ESTADO cellState : cell22.getNeighbourCells()) {
-            if (cellState.equals(Cell.ESTADO.ALIVE)) {
-                aliveNeighbourCells++;
+    private void checkIfCellIsAliveOrDead(Cell instanceCell) {
+        if (instanceCell.getPosition() == 22) {
+            if (ButCell22.isSelected()) {
+                instanceCell.setState(Cell.STATE.ALIVE);
+                return;
             }
+            instanceCell.setState(Cell.STATE.DEAD);
+        } else if (instanceCell.getPosition() == 42) {
+            if (ButCell42.isSelected()) {
+                instanceCell.setState(Cell.STATE.ALIVE);
+                return;
+            }
+            instanceCell.setState(Cell.STATE.DEAD);
         }
-        System.out.println("In the surroundings there are " + aliveNeighbourCells + " alive neighbour cells.");
+    }
 
-        checkIfCellIsAliveOrDead(cell22);
-
-        if (cell22.getState() == Cell.ESTADO.ALIVE) { //ALIVE
+    private void killOrReviveCell(Cell instanceCell, int aliveNeighbourCells) {
+        if (instanceCell.getState() == Cell.STATE.ALIVE) { //ALIVE
             if (aliveNeighbourCells != 2 && aliveNeighbourCells != 3) {
-                cell22.setState(Cell.ESTADO.DEAD);
+                instanceCell.setState(Cell.STATE.DEAD);
                 System.out.println("0,1 or 4 alive neighbour cells means this cell dies");
             }
         } else { //DEAD
             if (aliveNeighbourCells == 3) {
-                cell22.setState(Cell.ESTADO.ALIVE);
+                instanceCell.setState(Cell.STATE.ALIVE);
                 System.out.println("3 alive neighbour cells means this cell revives");
             }
         }
-        connectButtonWithItsCellState(cell22);
-    }//GEN-LAST:event_butStarttActionPerformed
-
-    private void checkIfCellIsAliveOrDead(Cell cell22) {
-        if (ButCell22.isSelected()) {
-            cell22.setState(Cell.ESTADO.ALIVE);
-            return;
-        }
-        cell22.setState(Cell.ESTADO.DEAD);
     }
 
-    private void connectButtonWithItsCellState(Cell cell22) {
-        if (cell22.getState().equals(Cell.ESTADO.ALIVE)) {
-            ButCell22.setSelected(true);
-            return;
+    private void cellWillChangeState(Cell instanceCell) {
+        if (instanceCell.getPosition() == 22) {
+            if ((instanceCell.getState().equals(Cell.STATE.ALIVE) && !ButCell22.isSelected())
+                    || (instanceCell.getState().equals(Cell.STATE.DEAD) && ButCell22.isSelected())) {
+                instanceCell.setWillChangeState(true);
+            }
+        } else if (instanceCell.getPosition() == 42) {
+            if ((instanceCell.getState().equals(Cell.STATE.ALIVE) && !ButCell42.isSelected())
+                    || (instanceCell.getState().equals(Cell.STATE.DEAD) && ButCell42.isSelected())) {
+                instanceCell.setWillChangeState(true);
+            }
         }
-        ButCell22.setSelected(false);
+    }
+
+    private void matchButtonWithItsCellState(Cell instanceCell, Cell otherInstanceCell) {
+        if (instanceCell.isWillChangeState() && instanceCell.getPosition() == 22) {
+            if (ButCell22.isSelected()) {
+                ButCell22.setSelected(false);
+            } else if (!ButCell22.isSelected()) {
+                ButCell22.setSelected(true);
+            }
+        }
+        if (otherInstanceCell.isWillChangeState() && otherInstanceCell.getPosition() == 42) {
+            if (ButCell42.isSelected()) {
+                ButCell42.setSelected(false);
+            } else if (!ButCell42.isSelected()) {
+                ButCell42.setSelected(true);
+            }
+        }
     }
 
     public static void main(String args[]) {
@@ -1897,6 +1949,54 @@ public class Frame extends javax.swing.JFrame {
             }
         });
     }
+
+    // - - - - - - - - - Change State Methods - - - - - - - - -
+    private void checkAndIncreaseAliveNeighbours(Cell neighbourCell, Cell instanceCell) {
+        neighbourCell.setState(Cell.STATE.DEAD);
+
+        if (neighbourCell.getPosition() == 1) {
+            if (ButCell1.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        } else if (neighbourCell.getPosition() == 2) {
+            if (ButCell2.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        } else if (neighbourCell.getPosition() == 21) {
+            if (ButCell21.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        } else if (neighbourCell.getPosition() == 22) {
+            if (ButCell22.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        } else if (neighbourCell.getPosition() == 23) {
+            if (ButCell23.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        } else if (neighbourCell.getPosition() == 41) {
+            if (ButCell41.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        } else if (neighbourCell.getPosition() == 42) {
+            if (ButCell42.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        } else if (neighbourCell.getPosition() == 43) {
+            if (ButCell43.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        } else if (neighbourCell.getPosition() == 62) {
+            if (ButCell62.isSelected()) {
+                addOneAliveNeighbourCellTo(instanceCell);
+            }
+        }
+    }
+
+    private void addOneAliveNeighbourCellTo(Cell instanceCell) {
+        instanceCell.setAliveNeighbourCells(instanceCell.getAliveNeighbourCells() + 1);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton ButCell1;
