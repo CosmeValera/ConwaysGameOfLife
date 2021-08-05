@@ -1,41 +1,25 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cell {
-    private int position;
+
     private int aliveNeighbourCells;
-    private boolean willChangeState;
     private STATE state;
-//    private List<Cell.STATE> neighbourCells;
-    
+    private STATE nextState;
+
     public enum STATE {
-        DEAD, ALIVE
+        DEADD, ALIVE
     }
 
     public Cell() {
-        position = 0;
         aliveNeighbourCells = 0;
-        willChangeState = false;
-        state = STATE.DEAD;
-//        neighbourCells = new ArrayList<>();
+        state = STATE.DEADD;
+        nextState = STATE.DEADD;
     }
 
-    public Cell(int numberPosition) {
-        this.position = numberPosition;
+    public Cell(STATE state) {
         aliveNeighbourCells = 0;
-        willChangeState = false;
-        state = STATE.DEAD;
-//        neighbourCells = new ArrayList<>();
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
+        this.state = state;
+        nextState = state;
     }
 
     public int getAliveNeighbourCells() {
@@ -46,15 +30,6 @@ public class Cell {
         this.aliveNeighbourCells = aliveNeighbourCells;
     }
 
-    
-    public boolean isWillChangeState() {
-        return willChangeState;
-    }
-
-    public void setWillChangeState(boolean willChangeState) {
-        this.willChangeState = willChangeState;
-    }
-
     public STATE getState() {
         return state;
     }
@@ -63,12 +38,12 @@ public class Cell {
         this.state = state;
     }
 
-//    public List<STATE> getNeighbourCells() {
-//        return neighbourCells;
-//    }
-//
-//    public void setNeighbourCells(List<STATE> neighbourCells) {
-//        this.neighbourCells = neighbourCells;
-//    }
+    public STATE getNextState() {
+        return nextState;
+    }
+
+    public void setNextState(STATE nextState) {
+        this.nextState = nextState;
+    }
 
 }
