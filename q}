@@ -1,0 +1,35 @@
+[33mcommit 8847490346807f0ffc348f8da70d938bea488c84[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: CosmeValera <cosmevalerareales@gmail.com>
+Date:   Thu Aug 5 21:17:32 2021 +0200
+
+    remove intermediary carpet and move gameOfLife to model package
+
+[33mcommit ff4742924a9cbd6d1a7c9bc5d5320aed85bcf94d[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: CosmeValera <cosmevalerareales@gmail.com>
+Date:   Thu Aug 5 20:54:54 2021 +0200
+
+    works in terminal correctly
+
+[33mcommit ca062c008cf3d1ad545053de5b59ee3ce1b480d1[m
+Author: CosmeValera <cosmevalerareales@gmail.com>
+Date:   Tue Aug 3 16:40:05 2021 +0200
+
+    2 buttons work simultaneously
+
+[33mcommit bb3fb3c83fd55773d36b3bcf5942717741b8b8bd[m
+Author: CosmeValera <cosmevalerareales@gmail.com>
+Date:   Mon Aug 2 19:03:43 2021 +0200
+
+    it works for cell22
+
+[33mcommit 49d8631611bb75881f91096d595386fdcd635c21[m
+Author: CosmeValera <cosmevalerareales@gmail.com>
+Date:   Mon Aug 2 18:19:12 2021 +0200
+
+    checking one cell
+
+[33mcommit d07c16c061fc11e4742d93e3d2842ce0cf1c48bd[m
+Author: CosmeValera <cosmevalerareales@gmail.com>
+Date:   Mon Aug 2 17:58:06 2021 +0200
+
+    initial commit
