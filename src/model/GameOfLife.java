@@ -1,4 +1,4 @@
-package view;
+package model;
 
 import model.Cell;
 import model.Cell.STATE;
@@ -7,6 +7,7 @@ public class GameOfLife {
 
     public static void main(String[] args) throws InterruptedException {
         
+        //DieHard
         Cell[][] cells = {
             {new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD)},
             {new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD)},
