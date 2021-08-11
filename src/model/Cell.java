@@ -4,7 +4,6 @@ public class Cell {
 
     private int aliveNeighbourCells;
     private STATE state;
-    private STATE nextState;
 
     public enum STATE {
         DEADD, ALIVE
@@ -13,13 +12,11 @@ public class Cell {
     public Cell() {
         aliveNeighbourCells = 0;
         state = STATE.DEADD;
-        nextState = STATE.DEADD;
     }
 
     public Cell(STATE state) {
         aliveNeighbourCells = 0;
         this.state = state;
-        nextState = state;
     }
 
     public int getAliveNeighbourCells() {
@@ -38,12 +35,25 @@ public class Cell {
         this.state = state;
     }
 
-    public STATE getNextState() {
-        return nextState;
+    // Methods
+    public void updateCell() {
+        if (this.state.equals(Cell.STATE.ALIVE)) { //Alive
+            cellDiesUnless2Or3Neighbours();
+        } else if (this.state.equals(Cell.STATE.DEADD)) { //Dead
+            cellRevivesWith3Neighbours();
+        }
     }
 
-    public void setNextState(STATE nextState) {
-        this.nextState = nextState;
+    private void cellDiesUnless2Or3Neighbours() {
+        if (aliveNeighbourCells != 2 && aliveNeighbourCells != 3) {
+            state = Cell.STATE.DEADD;
+        }
+    }
+
+    private void cellRevivesWith3Neighbours() {
+        if (aliveNeighbourCells == 3) {
+            state = Cell.STATE.ALIVE;
+        }
     }
 
 }
