@@ -2,9 +2,10 @@ package view;
 
 import model.Cell;
 
-public class ConsolePaint {
+public class ConsolePaint implements IPaint {
     
-    public static void paint(Cell[][] cells) {
+    @Override
+    public void paint(Cell[][] cells) {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 Cell instanceCell = cells[i][j];

@@ -1,0 +1,5 @@
+GameOfLife.iml
+build.xml
+build/
+nbproject/
+.idea

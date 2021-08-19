@@ -2,9 +2,10 @@ package model;
 
 import model.Cell.STATE;
 import view.ConsolePaint;
-import view.GUIFramePaint;
+import view.Frame;
+import view.IPaint;
 
-public class GameOfLife {
+public class GameOfLife{
 
     public static final int ITERATION_TIME_IN_MILISECONDS = 500;
 
@@ -34,14 +35,22 @@ public class GameOfLife {
             {new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD)},
             {new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD), new Cell(STATE.DEADD)},};
 
-        GUIFramePaint guifp = new GUIFramePaint();
-        guifp.showFrame();
         
+        GameOfLife gol = new GameOfLife();
+        ConsolePaint cp = new ConsolePaint();
+        Frame frame = new Frame();
         int num = 1;
+        
+        
         while (true) {
-
-//            ConsolePaint.paint(cells);
-            guifp.paint(cells);
+            IPaint ip = new IPaint() {
+                @Override
+                public void paint(Cell[][] cells) {
+//                    cp.paint(cells);
+//                    frame.paint(cells);
+                }
+            } ;
+            ip.paint(cells);
 
             loopCells(cells);
 
