@@ -1,10 +1,11 @@
 package view;
 
 import model.Cell;
+import model.IGamePainter;
 
-public class Frame extends javax.swing.JFrame implements IPaint{
+public class GUIGamePainter extends javax.swing.JFrame implements IGamePainter {
 
-    public Frame() {
+    public GUIGamePainter() {
         initComponents();
     }
 
@@ -26,6 +27,7 @@ public class Frame extends javax.swing.JFrame implements IPaint{
         labTitle.setText("CONWAY'S GAME OF LIFE");
 
         labCells.setText("This is not what should appear");
+        labCells.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -51,7 +53,7 @@ public class Frame extends javax.swing.JFrame implements IPaint{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
+    public void openFrame() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -65,46 +67,35 @@ public class Frame extends javax.swing.JFrame implements IPaint{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIGamePainter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIGamePainter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIGamePainter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIGamePainter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Frame().setVisible(true);
-            }
-        });
+        setVisible(true);
     }
 
     @Override
     public void paint(Cell[][] cells) {
-//        String args[] = {"1","2"};
-//        this.main(args);
-        
-        String text = "";
+        String text = "<html>";
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 Cell instanceCell = cells[i][j];
                 if (instanceCell.getState().equals(Cell.STATE.ALIVE)) {
-                    text += " O ";
+                    text += " 0 ";
                 } else {
                     text += " _ ";
                 }
             }
-            text += "\n";
+            text += "<br>";
         }
+        text += "</html>";
         labCells.setText(text);
-        
-        String args[] = {"1","2"};
-        this.main(args);
-        labCells.setText(text);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

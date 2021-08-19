@@ -1,7 +1,7 @@
 package model;
 
 public class GameOfLife {
-    public static final int ITERATION_TIME_IN_MILISECONDS = 1000;
+    public static final int ITERATION_TIME_IN_MILISECONDS = 300;
 
     private final IGamePainter gamePainter;
 
@@ -12,6 +12,7 @@ public class GameOfLife {
     public void play(Cell[][] cells) throws InterruptedException {
         GameLogic gameLogic = new GameLogic();
 
+        //openFrame();
         while (true) {
             Cell[][] updatedCells = gameLogic.update(cells);
             gamePainter.paint(updatedCells);
