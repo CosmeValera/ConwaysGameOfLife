@@ -1,23 +1,25 @@
 package model;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Cell[][] initialMatrix = {
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.ALIVE), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.ALIVE), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.ALIVE), new Cell(Cell.STATE.ALIVE), new Cell(Cell.STATE.ALIVE), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
-            {new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD), new Cell(Cell.STATE.DEADD)},
+                {Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.dead(), Cell.alive(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.dead(), Cell.dead(), Cell.alive(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.alive(), Cell.alive(), Cell.alive(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
+                {Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead(), Cell.dead()},
         };
- 
-        
-        GameOfLife game = new GameOfLife();
-      
+
+        GameOfLife game = new GameOfLife(
+                new TerminalGamePainter()
+                //new GUIGamePainter()
+        );
+
         game.play(initialMatrix);
     }
 }

@@ -5,6 +5,14 @@ public class Cell {
     private int aliveNeighbourCells;
     private STATE state;
 
+    public static Cell dead() {
+        return new Cell(STATE.DEADD);
+    }
+
+    public static Cell alive() {
+        return new Cell(STATE.ALIVE);
+    }
+
     public enum STATE {
         DEADD, ALIVE
     }
