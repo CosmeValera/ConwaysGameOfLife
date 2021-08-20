@@ -4,13 +4,13 @@ import view.GUIGamePainter;
 
 public class Main {
 
-    private static final int rows = 15;
-    private static final int columns = 50;
+    private static final int rows = 50;
+    private static final int columns = 90;
 
     public static void main(String[] args) throws InterruptedException {
         Cell[][] initialMatrix = createInitialMatrix();
 
-        GUIGamePainter guigp = new GUIGamePainter();
+        GUIGamePainter guigp = new GUIGamePainter(rows, columns);
 
         GameOfLife game = new GameOfLife(
                 //new TerminalGamePainter()
