@@ -1,7 +1,7 @@
 package model;
 
 public class GameOfLife {
-    public static final int ITERATION_TIME_IN_MILISECONDS = 500;
+    public static final int ITERATION_TIME_IN_MILISECONDS = 200;
 
     private final IGamePainter gamePainter;
 

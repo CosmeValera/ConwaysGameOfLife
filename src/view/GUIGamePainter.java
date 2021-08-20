@@ -39,13 +39,20 @@ public class GUIGamePainter implements IGamePainter {
 
     @Override
     public void paint(Cell[][] cells) {
+
+        int red = (int)(Math.random()*256);
+        int green = (int)(Math.random()*256);
+        int blue = (int)(Math.random()*256);
+        Color color = new Color(red,green,blue);
         allBlack();
+        g.setColor(color);
+
         for (int i = 0; i < width-1; i++) {
             for (int j = 0; j < length; j++) {
 
                 Cell instanceCell = cells[i][j];
                 if (instanceCell.getState().equals(Cell.STATE.ALIVE)) {
-                    g.setColor(Color.black);
+
                     g.drawOval((int) ((i + 0.33) * SIZE),
                             (int) ((j + 0.33) * SIZE),
                             (int) (0.67 * SIZE),
