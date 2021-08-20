@@ -1,5 +1,5 @@
-package model;
-
+import model.Cell;
+import model.GameOfLife;
 import view.GUIGamePainter;
 
 public class Main {
@@ -11,7 +11,6 @@ public class Main {
         Cell[][] initialMatrix = createInitialMatrix();
 
         GUIGamePainter guigp = new GUIGamePainter();
-        guigp.openFrame();
 
         GameOfLife game = new GameOfLife(
                 //new TerminalGamePainter()

@@ -1,4 +1,7 @@
-package model;
+package view;
+
+import model.Cell;
+import model.IGamePainter;
 
 public class TerminalGamePainter implements IGamePainter {
     @Override

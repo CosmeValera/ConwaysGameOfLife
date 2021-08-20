@@ -3,103 +3,60 @@ package view;
 import model.Cell;
 import model.IGamePainter;
 
-public class GUIGamePainter extends javax.swing.JFrame implements IGamePainter {
+import javax.swing.*;
+import java.awt.*;
+
+public class GUIGamePainter implements IGamePainter {
+
+    private final int WIDTH = 600;
+    private final int LENGTH = 560;
+    private final int SIZE = 30;
+
+    private JFrame jFrame;
+    private JPanel jPanel;
+    private Graphics g;
 
     public GUIGamePainter() {
-        initComponents();
-    }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+        this.jPanel = new JPanel(new BorderLayout());
 
-        labTitle = new javax.swing.JLabel();
-        labCells = new javax.swing.JLabel();
+        this.jFrame = new JFrame("Game of Life");
+        this.jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.jFrame.setSize(WIDTH * SIZE + 15,
+                LENGTH * SIZE + 45);
+        this.jFrame.setVisible(true);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        setSize(new java.awt.Dimension(800, 600));
+        this.jPanel.setSize(WIDTH * SIZE + 15,
+                LENGTH * SIZE + 45);
+        this.jFrame.add(this.jPanel);
 
-        labTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labTitle.setText("CONWAY'S GAME OF LIFE");
+        this.jFrame.setResizable(false);
 
-        labCells.setText("This is not what should appear");
-        labCells.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-                    .addComponent(labCells, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labCells, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    public void openFrame() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIGamePainter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIGamePainter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIGamePainter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIGamePainter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        setVisible(true);
+        this.g = jPanel.getGraphics();
     }
 
     @Override
     public void paint(Cell[][] cells) {
-        String text = "<html>";
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
+        allBlack();
+        for (int i = 0; i < SIZE/2; i++) {
+            for (int j = 0; j < SIZE/2; j++) {
+
                 Cell instanceCell = cells[i][j];
                 if (instanceCell.getState().equals(Cell.STATE.ALIVE)) {
-                    text += " 0 ";
-                } else {
-                    text += " _ ";
+                    g.setColor(Color.black);
+                    g.drawOval((int) ((i + 0.33) * SIZE),
+                            (int) ((j + 0.33) * SIZE),
+                            (int) (0.67 * SIZE),
+                            (int) (0.67 * SIZE));
                 }
             }
-            text += "<br>";
         }
-        text += "</html>";
-        labCells.setText(text);
-
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel labCells;
-    private javax.swing.JLabel labTitle;
-    // End of variables declaration//GEN-END:variables
+    private void allBlack() {
+        g.setColor(Color.white);
+        g.fillRect(0, 0, this.WIDTH * SIZE*1000,
+                this.LENGTH * SIZE *1000);
+    }
+
 }
